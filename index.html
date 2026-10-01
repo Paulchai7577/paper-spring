@@ -840,10 +840,10 @@ requestAnimationFrame(frame);
   async function load(){try{const r=await fetch(U+'/rest/v1/leaderboard?select=name,score&limit=10',{headers:H});if(r.ok)render(await r.json())}catch(e){}}
   async function save(sc){
     const name=myName();try{localStorage.setItem('paper-spring-nick',nick.value.trim())}catch(e){}
-    try{await fetch(U+'/rest/v1/rpc/submit_score',{method:'POST',headers:H,body:JSON.stringify({p_pid:pid,p_name:name,p_score:Math.min(500,sc)})})}catch(e){}
+    try{await fetch(U+'/rest/v1/rpc/submit_score',{method:'POST',headers:H,body:JSON.stringify({p_pid:(pid+'|'+name).slice(0,64),p_name:name,p_score:Math.min(500,sc)})})}catch(e){}
     load()}
-  onScore=sc=>{save(sc)};
-  nick.addEventListener('change',()=>{if(best>0)save(best)});
+  let last=0;onScore=sc=>{last=sc;save(sc)};
+  nick.addEventListener('change',()=>{if(last>0)save(last)});
 
   // ---- full ranking viewer (anyone with the link can open it)
   const stl=document.createElement('style');stl.textContent='.lbbtn{margin:2px 0;padding:8px 20px;border-radius:999px;border:1px solid rgba(243,195,90,.5);background:rgba(20,10,34,.55);color:var(--wax);font:700 14px var(--han);letter-spacing:.14em;cursor:pointer}.lbbtn:active{transform:translateY(1px)}#lbAll{z-index:50;background:rgba(11,6,18,.985)}#lbAll .card{max-height:100%;width:100%}#lbAll .lb{max-width:340px;max-height:58vh;overflow:auto;-webkit-overflow-scrolling:touch}#lbAll .lb li.t1 b{color:#ffd76a}#lbM{margin:0;font-size:14px;color:var(--mist)}#lbA li i{margin-left:auto}';document.head.append(stl);
