@@ -848,7 +848,7 @@ requestAnimationFrame(frame);
   // ---- full ranking viewer (anyone with the link can open it)
   const stl=document.createElement('style');stl.textContent='.lbbtn{margin:2px 0;padding:8px 20px;border-radius:999px;border:1px solid rgba(243,195,90,.5);background:rgba(20,10,34,.55);color:var(--wax);font:700 14px var(--han);letter-spacing:.14em;cursor:pointer}.lbbtn:active{transform:translateY(1px)}#lbAll{z-index:50;background:rgba(11,6,18,.985)}#lbAll .card{max-height:100%;width:100%}#lbAll .lb{max-width:340px;max-height:58vh;overflow:auto;-webkit-overflow-scrolling:touch}#lbAll .lb li.t1 b{color:#ffd76a}#lbM{margin:0;font-size:14px;color:var(--mist)}#lbA li i{margin-left:auto}';document.head.append(stl);
   const ov=document.createElement('div');ov.className='overlay';ov.id='lbAll';ov.hidden=true;
-  ov.innerHTML='<div class="card"><p class="eyebrow">HALL OF THE BRAVE</p><h2>墓園排行榜</h2><p id="lbM"></p><ol class="lb" id="lbA"></ol><button class="go alt" id="lbX" type="button">關閉</button></div>';
+  ov.innerHTML='<div class="card"><p class="eyebrow">HALL OF THE BRAVE</p><h2>城堡排行榜</h2><p id="lbM"></p><ol class="lb" id="lbA"></ol><button class="go alt" id="lbX" type="button">關閉</button></div>';
   document.body.append(ov);
   async function openAll(){
     ov.hidden=false;const ol=$('lbA'),m=$('lbM');ol.textContent='';m.textContent='載入中…';
